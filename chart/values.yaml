@@ -1,0 +1,20 @@
+---
+globals:
+  chart:
+    path: kubeit-charts/charts/kubeit-deployment-chart
+    ignoreMissingValueFiles: true
+    skipCrds: true
+
+applications:
+  - name: standard-workload
+    containerOS: linux
+    environments:
+      - name: dev
+        namespaces:
+          - standard
+          - standard-test
+        region:
+          - westeurope
+        clusterColour:
+          - blue
+          - dev001

@@ -1,0 +1,48 @@
+---
+name: Publish Docker image
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: ["main"]
+    paths:
+      - 'docker/*'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'docker/*'
+
+env:
+  PUSH_IMAGE: false
+
+jobs:
+  push_to_registries:
+    name: Push Docker image to multiple registries
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sets env vars for push decision
+        run: |
+          echo "PUSH_IMAGE=true" >> $GITHUB_ENV
+        if: startsWith(github.ref, 'refs/heads/main')
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: docker
+          push: ${{ env.PUSH_IMAGE }}
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ github.run_number }}
+          labels: ${{ github.repository }}

@@ -19,3 +19,9 @@ repos:
     rev: v0.1.17
     hooks:
       - id: helmlint
+  - repo: local
+    hooks:
+      - id: ct
+        name: Run ct lint
+        entry: ct lint --config=test-config.yaml
+        language: system

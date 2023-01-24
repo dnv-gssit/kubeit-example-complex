@@ -2,7 +2,8 @@
 extends: default
 
 ignore: |
-  helm/*
+  chart/*
+  kubeit-charts/*
 
 rules:
   line-length: disable

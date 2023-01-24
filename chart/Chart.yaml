@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: kubeit-complex-example
+description: KubeIT ArgoCD Complex example
+type: application
+version: 0.1.0
+appVersion: 0.1.0

@@ -1,5 +1,5 @@
 ---
-name: wiki-ci
+name: ci
 
 on:  # yamllint disable-line rule:truthy
   push:

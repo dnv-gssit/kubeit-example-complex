@@ -2,7 +2,6 @@
 applications: &apps
   - name: standard-workload
     containerOS: linux
-    repoURL: https://dnv-gssit.github.io/kubeit-example-complex
     chart:
       repoURL: https://dnv-gssit.github.io/kubeit-example-complex
       name: kubeit-deployment-chart

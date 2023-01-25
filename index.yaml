@@ -2,13 +2,13 @@ apiVersion: v1
 entries:
   kubeit-app-of-apps:
   - apiVersion: v2
-    created: "2023-01-25T09:49:57.984964476Z"
+    created: "2023-01-25T10:17:25.697167893Z"
     description: KubeIT ArgoCD app-of-apps chart
-    digest: b6bf5e7aa8b2871f6ab929613ca8e8a2f14629beb36d442d307b5563fc954542
+    digest: f6abbff5ce9ed73b796da5212c95ea04d8413bbdcf02a54bf80e6a892fe555c3
     name: kubeit-app-of-apps
     type: application
     urls:
-    - https://github.com/dnv-gssit/kubeit-example-complex/releases/download/kubeit-app-of-apps-0.1.38/kubeit-app-of-apps-0.1.38.tgz
+    - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-app-of-apps-0.1.38.tgz
     version: 0.1.38
   - apiVersion: v2
     created: "2023-01-24T15:19:41.466585218Z"
@@ -21,27 +21,27 @@ entries:
     version: 0.1.37
   kubeit-deployment-chart:
   - apiVersion: v2
-    created: "2023-01-24T15:19:41.647010985Z"
+    created: "2023-01-25T10:17:25.69817569Z"
     description: KubeIT workload deployment chart
-    digest: 80d007a11e025273d9fc16409e0a66b890dc41bac4772c0c0a73581ed281b8ba
+    digest: b38f8274e1878f7309efac814030b7f74f8d03b5708b8eeef8d1741772bdfcf1
     name: kubeit-deployment-chart
     type: application
     urls:
-    - https://github.com/dnv-gssit/kubeit-example-complex/releases/download/kubeit-deployment-chart-1.0.8/kubeit-deployment-chart-1.0.8.tgz
+    - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-deployment-chart-1.0.8.tgz
     version: 1.0.8
   kubeit-redis-chart:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-01-24T15:19:41.855748664Z"
+    created: "2023-01-25T10:17:25.704078775Z"
     dependencies:
     - name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 17.1.2
     description: KubeIT Redis chart
-    digest: db9f74beb44cba33ec9bc5b4375cecd5b7bed1f54343fd4b527ec87c6a86809d
+    digest: 70286159bd7f607203c5729ca7f652bb6c65bd3073d8a6ef582edf8444a52b36
     name: kubeit-redis-chart
     type: application
     urls:
-    - https://github.com/dnv-gssit/kubeit-example-complex/releases/download/kubeit-redis-chart-0.1.7/kubeit-redis-chart-0.1.7.tgz
+    - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-redis-chart-0.1.7.tgz
     version: 0.1.7
-generated: "2023-01-25T09:49:57.984971676Z"
+generated: "2023-01-25T10:17:25.696704594Z"

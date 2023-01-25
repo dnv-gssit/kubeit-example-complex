@@ -6,8 +6,6 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
-    paths:
-      - 'kubeit-charts/charts/*'
 
 jobs:
   release:

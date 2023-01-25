@@ -9,4 +9,3 @@ dependencies:
 - name: kubeit-app-of-apps
   version: "0.1.38"
   repository: "https://dnv-gssit.github.io/kubeit-example-complex"
-

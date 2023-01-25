@@ -13,7 +13,7 @@ applications: &apps
           - blue
           - dev001
 
-global: 
+global:
   chart:
     path: kubeit-charts/charts/kubeit-deployment-chart
     ignoreMissingValueFiles: true

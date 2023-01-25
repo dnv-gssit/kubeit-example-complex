@@ -3,8 +3,10 @@ applications: &apps
   - name: standard-workload
     containerOS: linux
     repoURL: https://dnv-gssit.github.io/kubeit-example-complex
-    chart: kubeit-deployment-chart
-    targetRevison: "1.0.8"
+    chart:
+      repoURL: https://dnv-gssit.github.io/kubeit-example-complex
+      name: kubeit-deployment-chart
+      targetRevision: "1.0.8"
     environments:
       - name: dev
         namespaces:
@@ -18,7 +20,6 @@ applications: &apps
 
 global:
   chart:
-    path: kubeit-charts/charts/kubeit-deployment-chart
     ignoreMissingValueFiles: true
     skipCrds: true
   applications: *apps

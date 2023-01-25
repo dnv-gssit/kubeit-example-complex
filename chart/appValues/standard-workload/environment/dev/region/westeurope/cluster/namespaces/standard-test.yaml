@@ -6,3 +6,11 @@ defaultRouting:
 env:
   KUBERNETES_NAMESPACE: standard-test
   MESSAGE: "Hello on standard-test namespace!"
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi

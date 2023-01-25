@@ -60,6 +60,7 @@
 {{- end }}
 {{- end }}
 {{- $appTruncName := printf "%s-%s" ($app.name | trunc 31 | trimSuffix "-") . | trunc 43 | trimSuffix "-" -}}
+{{- $appPath := ($app.chart | default dict ).path | default $.Values.global.chart.path -}}
 
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -96,18 +97,18 @@ spec:
     {{- if hasKey ($app.chart | default dict) "name" }}
     chart: "{{ $app.chart.name }}"
     {{- else }}
-    path: "{{ ($app.chart | default dict ).path | default $.Values.global.chart.path }}"
+    path: "{{ $appPath }}"
     {{- end }}
     helm:
       ignoreMissingValueFiles: {{ ($app.chart | default dict ).ignoreMissingValueFiles | default $.Values.global.chart.ignoreMissingValueFiles }}
       skipCrds: {{ ($app.chart | default dict ).skipCrds | default $.Values.global.chart.skipCrds }}
       valueFiles:
-        - ../../../chart/appValues/global.yaml
-        - ../../../chart/appValues/{{ $app.name }}/appGlobal.yaml
-        - ../../../chart/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/{{ $envDirectory }}.yaml
-        - ../../../chart/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/{{ $.Values.region }}.yaml
-        - ../../../chart/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/cluster/{{ $.Values.clusterColour }}.yaml
-        - ../../../chart/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/cluster/namespaces/{{ . }}.yaml
+        - ../../../{{ $appPath }}/appValues/global.yaml
+        - ../../../{{ $appPath }}/appValues/{{ $app.name }}/appGlobal.yaml
+        - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/{{ $envDirectory }}.yaml
+        - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/{{ $.Values.region }}.yaml
+        - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/cluster/{{ $.Values.clusterColour }}.yaml
+        - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/cluster/namespaces/{{ . }}.yaml
       values: |
         app: {{ $app.name }}
         namespace: {{ . }}

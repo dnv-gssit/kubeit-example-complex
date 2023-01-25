@@ -5,7 +5,7 @@ applications: &apps
     chart:
       repoURL: https://dnv-gssit.github.io/kubeit-example-complex
       name: kubeit-deployment-chart
-      targetRevision: "1.0.8"
+      targetRevision: "1.0.9"
     environments:
       - name: dev
         namespaces:
@@ -21,4 +21,6 @@ global:
   chart:
     ignoreMissingValueFiles: true
     skipCrds: true
+  keyVaultSecrets:
+    tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"
   applications: *apps

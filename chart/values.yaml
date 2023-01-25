@@ -1,11 +1,5 @@
 ---
-globals:
-  chart:
-    path: kubeit-charts/charts/kubeit-deployment-chart
-    ignoreMissingValueFiles: true
-    skipCrds: true
-
-applications:
+applications: &apps
   - name: standard-workload
     containerOS: linux
     environments:
@@ -18,3 +12,10 @@ applications:
         clusterColour:
           - blue
           - dev001
+
+global: 
+  chart:
+    path: kubeit-charts/charts/kubeit-deployment-chart
+    ignoreMissingValueFiles: true
+    skipCrds: true
+  applications: *apps

@@ -1,10 +1,10 @@
 ---
-globals:
-  chart:
-    path: kubeit-charts/charts/kubeit-deployment-chart
-    # General
-    ignoreMissingValueFiles: false
-    skipCrds: true
+#globals:
+#  chart:
+#    path: kubeit-charts/charts/kubeit-deployment-chart
+#    # General
+#    ignoreMissingValueFiles: false
+#    skipCrds: true
 
 applications:
   # - name: ""                          # Required: tenant_app_name - name of the app, must be the same as folder name in appValues directory

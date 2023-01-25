@@ -1,4 +1,5 @@
 # Reference ArgoCD application definition - https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+{{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- range $app := .Values.applications }}
 {{- range $environment := $app.environments }}
 {{- range $environment.namespaces }}
@@ -95,11 +96,11 @@ spec:
     {{- if hasKey ($app.chart | default dict) "name" }}
     chart: "{{ $app.chart.name }}"
     {{- else }}
-    path: "{{ ($app.chart | default dict ).path | default $.Values.globals.chart.path }}"
+    path: "{{ ($app.chart | default dict ).path | default $.Values.global.chart.path }}"
     {{- end }}
     helm:
-      ignoreMissingValueFiles: {{ ($app.chart | default dict ).ignoreMissingValueFiles | default $.Values.globals.chart.ignoreMissingValueFiles }}
-      skipCrds: {{ ($app.chart | default dict ).skipCrds | default $.Values.globals.chart.skipCrds }}
+      ignoreMissingValueFiles: {{ ($app.chart | default dict ).ignoreMissingValueFiles | default $.Values.global.chart.ignoreMissingValueFiles }}
+      skipCrds: {{ ($app.chart | default dict ).skipCrds | default $.Values.global.chart.skipCrds }}
       valueFiles:
         - ../../../chart/appValues/global.yaml
         - ../../../chart/appValues/{{ $app.name }}/appGlobal.yaml

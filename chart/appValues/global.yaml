@@ -1,7 +1,9 @@
 ---
 # Global values for all environments
-keyVaultSecrets:
-  tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"
+apps:
+  values:
+    keyVaultSecrets:
+      tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"
 
 # Only defined per application!
 # ArgoCD Image Updater Variables

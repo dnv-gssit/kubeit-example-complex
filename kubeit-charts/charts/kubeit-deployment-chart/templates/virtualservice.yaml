@@ -1,3 +1,5 @@
+# Merge global to Values
+{{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- define "retries" -}}
 {{- if .Values.defaultRouting.retries.enabled }}
     retries:

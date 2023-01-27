@@ -102,7 +102,6 @@ spec:
     helm:
       ignoreMissingValueFiles: {{ ($app.chart | default dict ).ignoreMissingValueFiles | default $.Values.global.chart.ignoreMissingValueFiles }}
       skipCrds: {{ ($app.chart | default dict ).skipCrds | default $.Values.global.chart.skipCrds }}
-      {{- if not ($app.chart.mergeValues | default false) }}
       valueFiles:
         - ../../../{{ $appPath }}/appValues/global.yaml
         - ../../../{{ $appPath }}/appValues/{{ $app.name }}/appGlobal.yaml
@@ -110,30 +109,27 @@ spec:
         - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/{{ $.Values.region }}.yaml
         - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/cluster/{{ $.Values.clusterColour }}.yaml
         - ../../../{{ $appPath }}/appValues/{{ $app.name }}/environment/{{ $envDirectory }}/region/{{ $.Values.region }}/cluster/namespaces/{{ . }}.yaml
-      {{- end }}
       values: |
-        app: {{ $app.name }}
-        merge: {{ $app.chart.mergeValues }}
-        namespace: {{ . }}
-        gateway:
-          name: istio-system/global-https-{{ $.Values.ingressType }}-default-gateway
-        defaultRouting:
-          kubeitDefaultHosts:
-            dnsDomain: "{{ $.Values.dnsDomain }}"
-            tenantMultiRegion: "{{ $.Values.tenantMultiRegion }}"
-        kubeit:
-          region: "{{ $.Values.region }}"
-          namespace: "{{ . }}"
-          clusterSubdomain: "{{ $.Values.clusterSubdomain }}"
-          clusterColour: "{{ $.Values.clusterColour }}"
-          ingressType: "{{ $.Values.ingressType }}"
-          shortRegion: "{{ $.Values.shortRegion }}"
-          tenantName: "{{ $.Values.tenantName }}"
-          environmentName: "{{ $.Values.env }}"
-          tenantPodIdentityName: "{{ $.Values.tenantPodIdentityName }}"
-        {{- if ($app.chart.mergeValues | default false) -}}
-        {{ toYaml $.Values.values | nindent 8 }}
-        {{- end }}
+        global:
+          app: {{ $app.name }}
+          merge: {{ $app.chart.mergeValues }}
+          namespace: {{ . }}
+          gateway:
+            name: istio-system/global-https-{{ $.Values.ingressType }}-default-gateway
+          defaultRouting:
+            kubeitDefaultHosts:
+              dnsDomain: "{{ $.Values.dnsDomain }}"
+              tenantMultiRegion: "{{ $.Values.tenantMultiRegion }}"
+          kubeit:
+            region: "{{ $.Values.region }}"
+            namespace: "{{ . }}"
+            clusterSubdomain: "{{ $.Values.clusterSubdomain }}"
+            clusterColour: "{{ $.Values.clusterColour }}"
+            ingressType: "{{ $.Values.ingressType }}"
+            shortRegion: "{{ $.Values.shortRegion }}"
+            tenantName: "{{ $.Values.tenantName }}"
+            environmentName: "{{ $.Values.env }}"
+            tenantPodIdentityName: "{{ $.Values.tenantPodIdentityName }}"
   {{- if ($app.ignoreReplicasOnSync | default false) }}
   ignoreDifferences:
   - group: "apps"

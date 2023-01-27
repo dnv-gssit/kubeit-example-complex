@@ -1,0 +1,11 @@
+---
+apiVersion: v2
+name: kubeit-deploy-app
+description: KubeIT ArgoCD Complex deploy app
+type: application
+version: 0.1.0
+dependencies:
+  - name: kubeit-deployment-chart
+    alias: deploy
+    version: "1.1.0"
+    repository: "https://dnv-gssit.github.io/kubeit-example-complex"

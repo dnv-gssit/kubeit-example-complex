@@ -1,6 +1,6 @@
 ---
 apiVersion: v2
-name: apps
+name: kubeit-app-of-apps
 description: KubeIT ArgoCD app-of-apps chart
 type: application
-version: 0.1.41
+version: 0.1.42

@@ -57,7 +57,7 @@ spec:
     - {{ . | quote }}
 {{- end }}
   gateways:
-    - {{ required "A valid .Values.gateway.name entry required!" .Values.gateway.name }}
+    - {{ .Values.gateway.name }}
 {{- $prefixes := default (list .Values.app) .Values.defaultRouting.urlPrefixes }}
   http:
 {{- if .Values.defaultRouting.urlExactMatches }}

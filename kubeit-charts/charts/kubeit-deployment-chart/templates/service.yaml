@@ -1,6 +1,7 @@
 # Merge global to Values
 {{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- if not .Values.deploymentOnly -}}
+---
 apiVersion: v1
 kind: Service
 metadata:

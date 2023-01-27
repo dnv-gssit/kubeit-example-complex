@@ -1,6 +1,0 @@
-dependencies:
-- name: kubeit-deployment-chart
-  repository: https://dnv-gssit.github.io/kubeit-example-complex
-  version: 1.0.9
-digest: sha256:00e597fe0bd19cf64292d4ac4be2e58c5a54c60f883a173349718772c78f077a
-generated: "2023-01-27T07:10:41.097063352Z"

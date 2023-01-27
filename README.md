@@ -77,21 +77,28 @@ Demonstrate to deploy applications with different configs per
    │   │   │   │   │   │   ├── namespaces
    │   │   │   │   │   │   │   ├── <namespace name>.yaml # specific settings per namespace
    ```
-# Development environment
 
-1. IDE for coding: Eclipse or Visual Studio Code
+   # Development environment
 
-2. git
+3. IDE for coding: Eclipse or Visual Studio Code
 
-3. [pre-commit](https://pre-commit.com/)
+4. git
+
+5. [pre-commit](https://pre-commit.com/)
 
 # Workshop tasks
 
-1. Do changes in existing application configuration, e.g. increase limits.
+1. Change namespaces to deploy your application:
 
-2. Deploy another application using **deploy** folder
+      * `chart/values.yaml` at application dictionary
 
-3. Deploy another application using different folder
+      * `deploy/appValues/standard-workload/environment/dev/region/westeurope/cluster/namespaces/\<rename to new namespace>`
+
+2. Do changes in existing application configuration, e.g. increase limits.
+
+3. Deploy another application using **deploy** folder
+
+4. Deploy another application using different folder
 
 # References:
 

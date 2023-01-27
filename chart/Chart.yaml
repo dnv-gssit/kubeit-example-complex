@@ -3,8 +3,8 @@ apiVersion: v2
 name: kubeit-complex-example
 description: KubeIT ArgoCD Complex example
 type: application
-version: 0.1.5
+version: 0.1.6
 dependencies:
   - name: kubeit-app-of-apps
-    version: "0.1.41"
+    version: "0.1.42"
     repository: "https://dnv-gssit.github.io/kubeit-example-complex"

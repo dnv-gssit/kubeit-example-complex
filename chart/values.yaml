@@ -3,10 +3,8 @@ applications: &apps
   - name: standard-workload
     containerOS: linux
     chart:
-      repoURL: https://dnv-gssit.github.io/kubeit-example-complex
-      name: kubeit-deployment-chart
-      targetRevision: "1.0.9"
-      mergeValues: true
+      name: kubeit-deploy-app
+      path: deploy
     environments:
       - name: dev
         namespaces:

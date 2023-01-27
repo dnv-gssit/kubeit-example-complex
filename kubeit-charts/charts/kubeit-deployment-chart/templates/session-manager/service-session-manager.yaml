@@ -1,3 +1,5 @@
+# Merge global to Values
+{{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- if .Values.sessionManagerDeployment }}
 {{- range $i, $host := .Values.defaultRouting.hosts }}
 {{ $namePostfix := $host | replace "." "-" }}

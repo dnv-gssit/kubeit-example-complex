@@ -3,7 +3,6 @@ applications: &apps
   - name: standard-workload
     containerOS: linux
     chart:
-      name: kubeit-deploy-app
       path: deploy
     environments:
       - name: dev

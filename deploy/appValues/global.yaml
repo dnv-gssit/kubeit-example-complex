@@ -3,8 +3,6 @@
 global:
   keyVaultSecrets:
     tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"
-  gateway:
-    name: "istio-system/global-https-external-default-gateway"
 
 # Only defined per application!
 # ArgoCD Image Updater Variables

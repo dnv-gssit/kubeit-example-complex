@@ -1,5 +1,5 @@
 # Merge global to Values
-{{- merge (deepCopy (default (dict) .Values.global)) .Values -}}
+{{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- if not .Values.deploymentOnly -}}
 ---
 apiVersion: v1

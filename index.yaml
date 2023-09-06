@@ -12,6 +12,15 @@ entries:
     version: 0.1.41
   kubeit-app-of-apps:
   - apiVersion: v2
+    created: "2023-09-06T16:07:04.510701061Z"
+    description: KubeIT ArgoCD app-of-apps chart
+    digest: 6d28585f4c61eba3205bc01f24ef5fd1d994dbca372d948dd71a76797d38e6b3
+    name: kubeit-app-of-apps
+    type: application
+    urls:
+    - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-app-of-apps-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     created: "2023-09-06T15:32:37.15946555Z"
     description: KubeIT ArgoCD app-of-apps chart
     digest: 7cdf84b89ef564f98bdf0c52c68b09e7602d8644ce664fabd3080ccce0093529
@@ -66,6 +75,15 @@ entries:
     - https://github.com/dnv-gssit/kubeit-example-complex/releases/download/kubeit-app-of-apps-0.1.37/kubeit-app-of-apps-0.1.37.tgz
     version: 0.1.37
   kubeit-deployment-chart:
+  - apiVersion: v2
+    created: "2023-09-06T16:07:04.512622199Z"
+    description: KubeIT workload deployment chart
+    digest: 55eccdb0709de4f24eb1d8a204f2032848a3bd5ba40e4d478df3cd0213af2d15
+    name: kubeit-deployment-chart
+    type: application
+    urls:
+    - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-deployment-chart-1.1.5.tgz
+    version: 1.1.5
   - apiVersion: v2
     created: "2023-09-06T15:32:37.160570164Z"
     description: KubeIT workload deployment chart
@@ -132,16 +150,16 @@ entries:
   kubeit-redis-chart:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-09-06T15:32:37.166987746Z"
+    created: "2023-09-06T16:07:04.519512638Z"
     dependencies:
     - name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 17.1.2
     description: KubeIT Redis chart
-    digest: 886d33089c17c46da1ae3181978836f6e238e0abb8f19a0e65e8d7f6b6c78107
+    digest: 1449aeacec40b59f19842c029bcea04c838c6083dc25a0a280ae1c6195366d75
     name: kubeit-redis-chart
     type: application
     urls:
     - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-redis-chart-0.1.7.tgz
     version: 0.1.7
-generated: "2023-09-06T15:32:37.159034045Z"
+generated: "2023-09-06T16:07:04.51018495Z"

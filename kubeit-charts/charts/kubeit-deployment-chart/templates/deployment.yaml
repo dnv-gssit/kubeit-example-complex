@@ -1,5 +1,5 @@
 # Merge global to Values
-{{- merge (deepCopy (default (dict) .Values.global)) .Values -}}
+{{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- define "image" -}}
 {{- if .Values.image.full -}}
   {{ .Values.image.full }}

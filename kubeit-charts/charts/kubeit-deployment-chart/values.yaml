@@ -4,6 +4,7 @@
 app: app        # Required
 
 version: v1
+
 replicaCount: 2
 
 mergeAppMetrics: false

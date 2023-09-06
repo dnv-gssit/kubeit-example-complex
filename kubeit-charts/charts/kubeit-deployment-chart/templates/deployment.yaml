@@ -28,7 +28,7 @@ spec:
   strategy:
     type: Recreate
   {{- end }}
-  replicas: {{ if .Values.global.replicaCount }}{{ .Values.global.replicaCount }}{{ else }}{{ .Values.replicaCount }}{{ end }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "platform-service.name" . }}

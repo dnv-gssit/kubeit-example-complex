@@ -18,4 +18,3 @@ authorizationPolicy:
   enabled: false
 requestAuthentication:
   enabled: false
-

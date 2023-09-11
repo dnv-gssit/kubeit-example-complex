@@ -75,7 +75,7 @@ spec:
   # routes to service
     route:
     - destination:
-        host: {{ include "platform-service.fullQualifiedServiceName" . | quote }}
+        host: {{ include "platform-service.serviceName" . | quote }}
 {{- if .Values.defaultRouting.corsPolicy }}
     corsPolicy:
 {{ .Values.defaultRouting.corsPolicy | toYaml | trim | indent 6 }}
@@ -96,7 +96,7 @@ spec:
   # routes to service
   - route:
     - destination:
-        host: {{ include "platform-service.fullQualifiedServiceName" . | quote }}
+        host: {{ include "platform-service.serviceName" . | quote }}
 {{- if .Values.defaultRouting.corsPolicy }}
     corsPolicy:
 {{ .Values.defaultRouting.corsPolicy | toYaml | trim | indent 6 }}

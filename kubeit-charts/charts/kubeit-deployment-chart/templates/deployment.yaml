@@ -36,6 +36,7 @@ spec:
   template:
     metadata:
       labels:
+        app: {{ include "platform-service.fullname" . }}
 {{ include "appLabels" . | trim | indent 8 }}
         {{- if .Values.opa.enabled }}
         sidecar.opa-istio.io/inject: "true"

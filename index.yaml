@@ -12,9 +12,9 @@ entries:
     version: 0.1.41
   kubeit-app-of-apps:
   - apiVersion: v2
-    created: "2023-09-07T21:43:10.368771724Z"
+    created: "2023-09-11T12:20:31.627230217Z"
     description: KubeIT ArgoCD app-of-apps chart
-    digest: bad08d5805c8e8a470c80bc4746c0a14fd67979ecf36e2ea06e8f3226827e560
+    digest: 4d34884d529055659a99193b005b3c56b8df0c5de14ba9ed6c05a745c87f2c22
     name: kubeit-app-of-apps
     type: application
     urls:
@@ -93,6 +93,15 @@ entries:
     - https://github.com/dnv-gssit/kubeit-example-complex/releases/download/kubeit-app-of-apps-0.1.37/kubeit-app-of-apps-0.1.37.tgz
     version: 0.1.37
   kubeit-deployment-chart:
+  - apiVersion: v2
+    created: "2023-09-11T12:20:31.628493611Z"
+    description: KubeIT workload deployment chart
+    digest: 307abe6eb1244856c66b8625801e400f997b688efebb1e87550db6e9803d04f3
+    name: kubeit-deployment-chart
+    type: application
+    urls:
+    - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-deployment-chart-1.1.11.tgz
+    version: 1.1.11
   - apiVersion: v2
     created: "2023-09-07T21:43:10.370167831Z"
     description: KubeIT workload deployment chart
@@ -204,16 +213,16 @@ entries:
   kubeit-redis-chart:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-09-07T21:43:10.376597964Z"
+    created: "2023-09-11T12:20:31.636109877Z"
     dependencies:
     - name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 17.1.2
     description: KubeIT Redis chart
-    digest: d7a01bfd7ed1e1fcd506eee5277ad75622fb0e4f480afc062602bf438d05a6e5
+    digest: 949c85baa126bdf20ae3237d73c8a66fc3f43b8e7b4fe87b3d4bf07f43544609
     name: kubeit-redis-chart
     type: application
     urls:
     - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-redis-chart-0.1.7.tgz
     version: 0.1.7
-generated: "2023-09-07T21:43:10.368220322Z"
+generated: "2023-09-11T12:20:31.626399055Z"

@@ -1,5 +1,5 @@
 # Merge global to Values
-{{- merge .Values (deepCopy (default (dict) .Values.global)) -}}
+{{- mergeOverwrite .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- if .Values.hpa.enabled }}
 ---
 apiVersion: autoscaling/v1

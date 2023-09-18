@@ -239,5 +239,4 @@ spec:
 {{- end }}
 {{- range .Values.volumes }}
       - name: {{ .name }}
-{{ tpl .volumeDefinition $ | indent 8 }}
 {{- end }}

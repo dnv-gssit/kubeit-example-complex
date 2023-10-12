@@ -1,12 +1,10 @@
 ---
 # Global values for all environments
 global:
-  keyVaultSecrets:
-    tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"
   # external-secrets example
   azureKeyVaultSecrets:
     type: external-secrets                               # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
-    tenantId: "abcd1234-ab12-cd34-ef56-abcdef123456"     # Azure Active Directory Tenant ID
+    tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"     # Azure Active Directory Tenant ID
     clientId: "defg4321-ba21-de56-fg67-fedbca654321"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
     azureKeyVaults:
       - azureKeyVaultName: testkeyvault                  # Name of the Azure KeyVault
@@ -23,26 +21,6 @@ global:
                 azureKeyVaultSecretName: SecretName3
               - k8sSecretKey: k8sSecretKey3
                 azureKeyVaultSecretName: SecretName3
-# csi-keyvault example
-# azureKeyVaultSecrets:
-#   type: csi-keyvault                                   # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
-#   tenantId: "abcd1234-ab12-cd34-ef56-abcdef123456"     # Azure Active Directory Tenant ID
-#   clientId: "defg4321-ba21-de56-fg67-fedbca654321"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
-#   azureKeyVaults:
-#     - azureKeyVaultName: testkeyvault                  # Name of the Azure KeyVault
-#       secrets:
-#         - k8sSecretName: testSecret                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
-#           data:
-#             - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
-#               azureKeyVaultSecretName: SecretName      # Name of the secret in Azure KeyVault to pull the secret value from
-#             - k8sSecretKey: k8sSecretKey2              # It is possible to define multiple secret keys and values in one secretproviderclass - lines below show example how to do that
-#               azureKeyVaultSecretName: SecretName2
-#         - k8sSecretName: testSecret2
-#           data:
-#             - k8sSecretKey: k8sSecretKey3
-#               azureKeyVaultSecretName: SecretName3
-#             - k8sSecretKey: k8sSecretKey3
-#               azureKeyVaultSecretName: SecretName3
 # Only defined per application!
 # ArgoCD Image Updater Variables
 # argoCDImageUpdater:                         # Required: Define the line to enable the ArgoCD Image Updater

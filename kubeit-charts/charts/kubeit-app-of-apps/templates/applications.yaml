@@ -1,5 +1,5 @@
 # Reference ArgoCD application definition - https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
-{{- merge (deepCopy (default (dict) .Values.global)) .Values -}}
+{{- mergeOverwrite .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- range $app := .Values.applications }}
 {{- range $environment := $app.environments }}
 {{- range $environment.namespaces }}

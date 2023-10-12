@@ -12,9 +12,9 @@ entries:
     version: 0.1.41
   kubeit-app-of-apps:
   - apiVersion: v2
-    created: "2023-10-12T16:56:48.94857521Z"
+    created: "2023-10-12T16:57:46.056969568Z"
     description: KubeIT ArgoCD app-of-apps chart
-    digest: fb623aa4ea58e3eafdb8c149d8ae1f8213a080526b06d1bcdd17ce20bc9397fb
+    digest: 44de284c21d45f65548eb71c5b162a3d92da78f6202234e4494cb356b1d965cb
     name: kubeit-app-of-apps
     type: application
     urls:
@@ -94,9 +94,9 @@ entries:
     version: 0.1.37
   kubeit-deployment-chart:
   - apiVersion: v2
-    created: "2023-10-12T16:56:48.949670103Z"
+    created: "2023-10-12T16:57:46.058039681Z"
     description: KubeIT workload deployment chart
-    digest: 3129d4a5b6c50937e38c467adcffeab46f0d271f2df01be9b2c7bc47e49a1fea
+    digest: a1be32657314948a5f606be6974ca57159430d9eb133ccd274022bdf97bb6c9a
     name: kubeit-deployment-chart
     type: application
     urls:
@@ -276,13 +276,13 @@ entries:
   kubeit-redis-chart:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-10-12T16:56:48.956854659Z"
+    created: "2023-10-12T16:57:46.064405458Z"
     dependencies:
     - name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 17.1.2
     description: KubeIT Redis chart
-    digest: bf2f2fc01bb360b42c7c318e743a5de17db140f66468e573b7278c78729591c0
+    digest: 46e0f0f08ae0422f17f7d57e3938ab33948ccc58bc12998929be11a286ca95ee
     name: kubeit-redis-chart
     type: application
     urls:
@@ -291,13 +291,13 @@ entries:
   kubeit-secrets-chart:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-10-12T16:56:48.957122757Z"
+    created: "2023-10-12T16:57:46.064657061Z"
     description: KubeIT secrets chart for using the csi-keyvault or external-secrets
       operators
-    digest: c872bf4e76beceb635c7bda2a4b29096a4ec8222b5e664b2b7c7a905899692f7
+    digest: 7feff3002ec2d05c3f4e8a5002683f429079d99bb2af3e5a3f0493fb7e3d4881
     name: kubeit-secrets-chart
     type: application
     urls:
     - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-secrets-chart-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-12T16:56:48.948117313Z"
+generated: "2023-10-12T16:57:46.056497762Z"

@@ -11,24 +11,24 @@ region: westeurope
 clusterColour: blue
 networkPlugin: azure
 
-applications:
-  - name: standard-workload
-    namespace: "management-test"
-    containerOS: linux
-    chart:
-      path: deploy
-    environments:
-      - name: dev
-        namespaces:
-          - standard
-          - standard-test
-        region:
-          - westeurope
-          - eastus2
-        clusterColour:
-          - blue
-          - dev001
-          - dev017
+applications: []
+#  - name: standard-workload
+#    namespace: "management-test"
+#    containerOS: linux
+#    chart:
+#      path: deploy
+#    environments:
+#      - name: dev
+#        namespaces:
+#          - standard
+#          - standard-test
+#        region:
+#          - westeurope
+#          - eastus2
+#        clusterColour:
+#          - blue
+#          - dev001
+#          - dev017
 #   - name: "test"                          # Required: tenant_app_name - name of the app, must be the same as folder name in appValues directory
 #     namespace: "test"                     # Required: tenant_namespace - name of the namespace provided during KubeIT onboarding process
 #     containerOS: "linux"                   # Required: linux, windows - define container OS to deploy on supported network plugin

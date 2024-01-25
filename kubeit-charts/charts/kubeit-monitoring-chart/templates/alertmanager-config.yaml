@@ -1,0 +1,38 @@
+# Merge global to Values
+{{- mergeOverwrite .Values (deepCopy (default (dict) .Values.global)) -}}
+{{- if  .Values.alertmanagerconfig.enabled }}
+{{- range $config:= .Values.alertmanagerconfig.alerts }}
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: {{ .name | lower  }}-alertmanagerconfig
+spec:
+  route:
+    groupBy:
+    {{- range .groupBy  }}
+      - {{ . }}
+    {{- end }}
+    groupWait: {{ .groupWait }}
+    groupInterval: {{ .groupInterval }}
+    repeatInterval: {{ .repeatInterval }}
+    continue: {{ .continue }}
+    matchers:
+      {{- range .routes.matcher }}
+        - name: {{ .name }}
+          matchType: {{ .matchType }}
+          value: "{{ .value }}"
+      {{- end }}
+    receiver: {{ .receiver }}
+  receivers:
+  {{- range .receivers }}
+    - name: {{ .name }}
+      {{- range .webhookConfigs }}
+      webhookConfigs:
+        - urlSecret:
+            key: {{ .urlSecret.key }}
+            name: {{ .urlSecret.name }}
+      {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}

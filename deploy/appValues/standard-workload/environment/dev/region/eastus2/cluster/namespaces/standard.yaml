@@ -15,7 +15,21 @@ global:
     limits:
       cpu: 700m
       memory: 128Mi
+  service:
+    kubeitTcpServiceEnabled: true
+    exposeInternalLoadBalancer: true
+    port: 10008
+    type: LoadBalancer
+
   authorizationPolicy:
     enabled: false
   requestAuthentication:
     enabled: false
+  vpa:
+    enabled: true
+    minCPU: 300m
+    maxCPU: 1
+    minMem: 300Mi
+    maxMem: 800Mi
+    minReplicas: 1
+    containerName: "*"

@@ -186,10 +186,10 @@ spec:
 {{ .Values.health.startupProbe | toYaml | trim | indent 12 }}
 {{- end }}
           volumeMounts:
-{{- if eq .Values.keyVaultSecrets.enabled true }}
-{{- range $keyVaults:= .Values.keyVaultSecrets.keyVaults }}
-            - name: "secrets-store-{{ .keyVaultName | lower }}"
-              mountPath: "/var/secrets/{{ .keyVaultName | lower }}"
+{{- if eq .Values.azureKeyVaultSecrets.type "csi-keyvault" }}
+{{- range $keyVaults:= .Values.azureKeyVaultSecrets.azureKeyVaults }}
+            - name: "secrets-store-{{ .azureKeyVaultName | lower }}"
+              mountPath: "/var/secrets/{{ .azureKeyVaultName | lower }}"
 {{- end }}
 {{- end }}
           {{- range .Values.volumes }}
@@ -220,21 +220,21 @@ spec:
       {{- end }}
       volumes:
 {{ if .Values.opa.enabled }}
-      - name: opa-istio-config
-        configMap:
-          name: opa-istio-config
-      - name: opa-policy
-        configMap:
-          name: opa-policy
+        - name: opa-istio-config
+          configMap:
+            name: opa-istio-config
+        - name: opa-policy
+          configMap:
+            name: opa-policy
 {{ end }}
-{{- if .Values.keyVaultSecrets }}
-{{- range $keyVaults:= .Values.keyVaultSecrets.keyVaults }}
-      - name: "secrets-store-{{ .keyVaultName | lower }}"
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: "{{ $.Values.app }}-secret-class-{{ .keyVaultName | lower }}"
+{{- if eq .Values.azureKeyVaultSecrets.type "csi-keyvault" }}
+{{- range $keyVaults:= .Values.azureKeyVaultSecrets.azureKeyVaults }}
+        - name: "secrets-store-{{ .azureKeyVaultName | lower }}"
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "{{ .azureKeyVaultName | lower }}-secret-class"
 {{- end }}
 {{- end }}
 {{- range .Values.volumes }}

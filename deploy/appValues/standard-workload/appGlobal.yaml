@@ -6,8 +6,8 @@ global:
     state: stateful     # Required - stateful or stateless, for stateless mounting extra volumes is blocked (besides keyvault)
 
   image:
-    repository: "paulbouwer/hello-kubernetes"
-    tag: "1.10"
+    repository: "kubeitglobalsvcauxacrwe.azurecr.io/test/hello-kubernetes"
+    tag: "1.5"
     containerPort: 8080
 
   # service:
@@ -41,9 +41,35 @@ global:
     capabilities:
       drop:
         - ALL
-    readOnlyRootFilesystem: true
+    readOnlyRootFilesystem: false
     runAsNonRoot: true
 
   # https://github.com/paulbouwer/hello-kubernetes/tree/main/src/app
   env:
     MESSAGE: "Hello on standard workload!"
+
+  alertmanagerconfig:
+    enabled: true
+    alerts:
+      - name: example
+        groupBy: ["alertname", "job"]
+        groupWait: 30s
+        groupInterval: 5m
+        repeatInterval: 12h
+        continue: true
+        routes:
+          matcher:
+            - name: tenant
+              matchType: =
+              value: "tenantName"
+            - name: namespace
+              matchType: =~
+              value: "tenant2"
+        receiver: gssit-alert-manager
+        receivers:
+          - name: gssit-alert-manager
+            secret: dGVzdA==
+            webhookConfigs:
+              - urlSecret:
+                  key: webhook
+                  name: teams-notifications-webhook

@@ -2,65 +2,55 @@
 # Global values for all environments
 global:
   keyVaultSecrets:
-    tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"
-  # external-secrets example
+    enabled: true
+  vpa:
+    enabled: false
+    minCPU: 300m
+    maxCPU: 1
+    minMem: 300Mi
+    maxMem: 500Mi
+    minReplicas: 1
+    containerName: "*"
   azureKeyVaultSecrets:
+    # type: csi-keyvault                                   # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
+    # tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"     # Azure Active Directory Tenant ID
+    # clientId: ""                                         # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
+    # azureKeyVaults:
+    #   - azureKeyVaultName: KubeIT-DEV-KV-SH-WE                  # Name of the Azure KeyVault
+    #     secrets:
+    #       - k8sSecretName: testSecret                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
+    #         data:
+    #           - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
+    #             azureKeyVaultSecretName: certificate-key-le-dev      # Name of the secret in Azure KeyVault to pull the secret value from
+    #           - k8sSecretKey: k8sSecretKey2              # It is possible to define multiple secret keys and values in one secretproviderclass - lines below show example how to do that
+    #             azureKeyVaultSecretName: SecretName2
+    #       - k8sSecretName: testSecret2
+    #         data:
+    #           - k8sSecretKey: k8sSecretKey3
+    #             azureKeyVaultSecretName: SecretName3
+    #           - k8sSecretKey: k8sSecretKey3
+    #             azureKeyVaultSecretName: SecretName3
+    #   - azureKeyVaultName: testkeyvault2                       # Name of the Azure KeyVault
+    #     secrets:
+    #       - k8sSecretName: testkeyvault2                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
+    #         data:
+    #           - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
+    #             azureKeyVaultSecretName: SecretName4      # Name of the secret in Azure KeyVault to pull the secret value from
+    #           - k8sSecretKey: k8sSecretKey4              # It is possible to define multiple secret keys and values in one secretproviderclass - lines below show example how to do that
+    #             azureKeyVaultSecretName: SecretName4
+    #       - k8sSecretName: testSecret5
+    #         data:
+    #           - k8sSecretKey: k8sSecretKey5
+    #             azureKeyVaultSecretName: SecretName5
+    #           - k8sSecretKey: k8sSecretKey5
+    #             azureKeyVaultSecretName: SecretName5
     type: external-secrets                               # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
-    tenantId: "abcd1234-ab12-cd34-ef56-abcdef123456"     # Azure Active Directory Tenant ID
-    clientId: "defg4321-ba21-de56-fg67-fedbca654321"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
+    tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"     # Azure Active Directory Tenant ID
+    clientId: "41172937-fa3a-48ce-ac40-2a76c13b1be4"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
     azureKeyVaults:
-      - azureKeyVaultName: testkeyvault                  # Name of the Azure KeyVault
+      - azureKeyVaultName: KubeIT-DEV-KV-SH-WE                  # Name of the Azure KeyVault
         secrets:
           - k8sSecretName: testSecret                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
             data:
               - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
-                azureKeyVaultSecretName: SecretName      # Name of the secret in Azure KeyVault to pull the secret value from
-              - k8sSecretKey: k8sSecretKey2              # It is possible to define multiple secret keys and values in one secretproviderclass - lines below show example how to do that
-                azureKeyVaultSecretName: SecretName2
-          - k8sSecretName: testSecret2
-            data:
-              - k8sSecretKey: k8sSecretKey3
-                azureKeyVaultSecretName: SecretName3
-              - k8sSecretKey: k8sSecretKey3
-                azureKeyVaultSecretName: SecretName3
-# csi-keyvault example
-# azureKeyVaultSecrets:
-#   type: csi-keyvault                                   # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
-#   tenantId: "abcd1234-ab12-cd34-ef56-abcdef123456"     # Azure Active Directory Tenant ID
-#   clientId: "defg4321-ba21-de56-fg67-fedbca654321"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
-#   azureKeyVaults:
-#     - azureKeyVaultName: testkeyvault                  # Name of the Azure KeyVault
-#       secrets:
-#         - k8sSecretName: testSecret                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
-#           data:
-#             - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
-#               azureKeyVaultSecretName: SecretName      # Name of the secret in Azure KeyVault to pull the secret value from
-#             - k8sSecretKey: k8sSecretKey2              # It is possible to define multiple secret keys and values in one secretproviderclass - lines below show example how to do that
-#               azureKeyVaultSecretName: SecretName2
-#         - k8sSecretName: testSecret2
-#           data:
-#             - k8sSecretKey: k8sSecretKey3
-#               azureKeyVaultSecretName: SecretName3
-#             - k8sSecretKey: k8sSecretKey3
-#               azureKeyVaultSecretName: SecretName3
-# Only defined per application!
-# ArgoCD Image Updater Variables
-# argoCDImageUpdater:                         # Required: Define the line to enable the ArgoCD Image Updater
-#     updaterRepository:                      # Required: Define the repository and image name used for the updater, Cluster Admins have to configure the registry first
-#     updaterVersionConstraint:               # Required: Define the semantic version image constraint to use desired image versions, more info https://github.com/Masterminds/semver#checking-version-constraints
-#     updaterGitBranch:                       # Required: Define the name of the branch where Image Updater is going to commit image updates, default - application branch
-#     updaterAllowTags:                       # Optional: Define the tags that should be considered by the Image Updater following the regexp function
-#     updaterIgnoreTags:                      # Optional: Define the tags that should be ignored by the Image Updater following the glob-like patterns, more info https://golang.org/pkg/path/filepath/#Match
-#     updaterStrategy: [semver, latest, name] # Optional: Define the strategy used by the Image Updater, more info https://argocd-image-updater.readthedocs.io/en/stable/configuration/images/#update-strategies
-#     updaterGitSecret: namespace/secret      # Optional: Override the default ArgoCD credentials used for repository authentication <namespace>/<secret> - namespace and secret name.
-#     updaterPullSecret:                      # Optional: Override the default secret used in the registry configuration made by Cluster Admin Team, more info https://argocd-image-updater.readthedocs.io/en/stable/configuration/images/#specifying-pull-secrets
-# Example below
-# argoCDImageUpdater:
-#     updaterRepository: "voakpglobalsvcprodacrwe.azurecr.io/alpinetest"
-#     updaterVersionConstraint: ">1.1"
-#     updaterStrategy: "latest"
-#     updaterGitBranch: "feature/image-updater"
-#     updaterGitSecret: "argocd/argocd-repo-key"
-#     updaterAllowTags: "^v1.0.[0-9a-zA-Z]+$"
-#     updaterIgnoreTags: "1.4"
-#     updaterPullSecret: "pullsecret:argocd/tenant-pull-secret"
+                azureKeyVaultSecretName: certificate-key-le-dev       # Name of the secret in Azure KeyVault to pull the secret value from

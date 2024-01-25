@@ -1,0 +1,47 @@
+alertmanagerconfig: {}
+  # enabled: true
+  # alerts:
+  #   - name: example
+  #     groupBy: ["alertname", "job"]
+  #     groupWait: 30s
+  #     groupInterval: 5m
+  #     repeatInterval: 12h
+  #     continue: true
+  #     routes:
+  #       matcher:
+  #         - name: tenant
+  #           matchType: =
+  #           value: "tenantName"
+  #         - name: namespace
+  #           matchType: =~
+  #           value: "tenant2"
+  #     receiver: gssit-alert-manager
+  #     receivers:
+  #       - name: gssit-alert-manager
+  #         webhookConfigs:
+  #           - urlSecret:
+  #               key: webhook
+  #               name: teams-notifications-webhook
+prometheusRules: {}
+  # enabled: true
+  # groups:
+  #   - name: argocd.rules
+  #     alerts:
+  #       - alert: ArgoAppMissing
+  #         expr: absent(argocd_app_info)
+  #         for: 15m
+  #         labels:
+  #           - severity: critical
+  #           - tenant: tenant2
+  #         annotations:
+  #           summary: "[ArgoCD] No reported applications"
+  #           description: "ArgoCD has not reported any applications data for the past 15 minutes which means that it must be down or not functioning properly.  This needs to be resolved for this cloud to continue to maintain state."
+  #       - alert: ArgoAppNotSynced
+  #         expr: argocd_app_info{sync_status!="Synced"} == 1
+  #         for: 12h
+  #         labels:
+  #           - severity: warning
+  #           - tenant: tenant2
+  #         annotations:
+  #           summary: "[{{`{{$labels.name}}`}}] Application not synchronized"
+  #           description: "The application [{{`{{$labels.name}}`}} has not been synchronized for over 12 hours which means that the state of this cloud has drifted away from the state inside Git."

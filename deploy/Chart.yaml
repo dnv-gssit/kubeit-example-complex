@@ -7,5 +7,11 @@ version: 0.1.0
 dependencies:
   - name: kubeit-deployment-chart
     alias: deploy
-    version: "1.1.2"
+    version: "1.1.17"
+    repository: "https://dnv-gssit.github.io/kubeit-example-complex"
+  - name: kubeit-secrets-chart
+    version: "1.0.0"
+    repository: "https://dnv-gssit.github.io/kubeit-example-complex"
+  - name: kubeit-monitoring-chart
+    version: "1.0.0"
     repository: "https://dnv-gssit.github.io/kubeit-example-complex"

@@ -47,6 +47,7 @@ configMap:
 #     my third config line
 
 service:
+  # https://docs.kubeit.dnv.com/documentation/components/networking/?h=tcp#f5-tcp-virtualservers
   kubeitTcpServiceEnabled: false
   exposeInternalLoadBalancer: false
   # unspecified for default microservice (for now at least)
@@ -93,6 +94,7 @@ hpa:
   maxReplicas: 3
   minReplicas: 1
 
+# https://www.kubecost.com/kubernetes-autoscaling/kubernetes-vpa/
 vpa:
   enabled: false
   minCPU: 300m

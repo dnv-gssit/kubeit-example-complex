@@ -15,13 +15,14 @@ global:
     limits:
       cpu: 500m
       memory: 128Mi
-  type: external-secrets                               # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
-  tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"     # Azure Active Directory Tenant ID
-  clientId: "41172937-fa3a-48ce-ac40-2a76c13b1be4"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
-  azureKeyVaults:
-    - azureKeyVaultName: KubeIT-DEV-KV-SH-WE                  # Name of the Azure KeyVault
-      secrets:
-        - k8sSecretName: testSecret                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
-          data:
-            - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
-              azureKeyVaultSecretName: certificate-key-le-dev       # Name of the secret in Azure KeyVault to pull the secret value from
+  azureKeyVaultSecrets:
+    type: external-secrets                               # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
+    tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"     # Azure Active Directory Tenant ID
+    clientId: "41172937-fa3a-48ce-ac40-2a76c13b1be4"     # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it
+    azureKeyVaults:
+      - azureKeyVaultName: KubeIT-DEV-KV-SH-WE                  # Name of the Azure KeyVault
+        secrets:
+          - k8sSecretName: testSecret                    # Name of the Kubernetes secret resource that is going to be created inside the cluster
+            data:
+              - k8sSecretKey: k8sSecretKey               # Name of the key in Kubernetes secret resource
+                azureKeyVaultSecretName: certificate-key-le-dev       # Name of the secret in Azure KeyVault to pull the secret value from

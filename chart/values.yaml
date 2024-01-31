@@ -10,23 +10,13 @@ applications: &apps
           - standard-test
           - standard
         region:
+          - westeurope
           - eastus2
         clusterColour:
           - blue
+          - dev001
           - dev017
-  - name: standard-workload-2
-    containerOS: linux
-    chart:
-      path: deploy
-    environments:
-      - name: dev
-        namespaces:
-          - standard-test
-        region:
-          - eastus2
-        clusterColour:
-          - blue
-          - dev017
+
 global:
   chart:
     ignoreMissingValueFiles: true

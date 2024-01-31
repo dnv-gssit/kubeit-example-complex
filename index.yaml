@@ -12,9 +12,9 @@ entries:
     version: 0.1.41
   kubeit-app-of-apps:
   - apiVersion: v2
-    created: "2024-01-30T15:46:10.901844072Z"
+    created: "2024-01-31T16:06:40.311019614Z"
     description: KubeIT ArgoCD app-of-apps chart
-    digest: fa2f1b0ec8cc69bb8861efeb4ada546b44bccc7cedc8d5c851d4ea357c17152e
+    digest: bae302cbb18731e1b55a4eb929ad10004558392bd15324c4294e033566285558
     name: kubeit-app-of-apps
     type: application
     urls:
@@ -103,9 +103,9 @@ entries:
     - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-deployment-chart-1.1.18.tgz
     version: 1.1.18
   - apiVersion: v2
-    created: "2024-01-30T15:46:10.90306776Z"
+    created: "2024-01-31T16:06:40.311865008Z"
     description: KubeIT workload deployment chart
-    digest: 041233a689584396b0118e2d9e12d50917b5448510b096962c9559ea4dd5c9db
+    digest: 7153863383b227a7cc68668cfb78c6e7546ac27ef84b7e06d2016e480b45adac
     name: kubeit-deployment-chart
     type: application
     urls:
@@ -276,10 +276,10 @@ entries:
   kubeit-monitoring-chart:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-01-30T15:46:10.903379333Z"
+    created: "2024-01-31T16:06:40.312158605Z"
     description: KubeIT monitoring chart using Alert manager, Prometheus Rules and
       Grafana Dashboard
-    digest: c99b233acf6ea3d6d3acc6ce2ea65736a4c0fa9130d98c8d2436e84bfff2f9d7
+    digest: 81d17e1f9b05971e0efc1df762d83ff4978bfa094b6061945b1c52a6dcbffe86
     name: kubeit-monitoring-chart
     type: application
     urls:
@@ -303,13 +303,13 @@ entries:
   kubeit-secrets-chart:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-01-30T15:46:10.903590177Z"
+    created: "2024-01-31T16:06:40.312351374Z"
     description: KubeIT secrets chart for using the csi-keyvault or external-secrets
       operators
-    digest: d1ca3371cc292a0ca840125f554821cdb604aff270cc8668b2b8f12916860469
+    digest: 87da3ac15d75daec752001c260f602e859e39f3ff29ba23abe482ee7d02d1465
     name: kubeit-secrets-chart
     type: application
     urls:
     - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-secrets-chart-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-30T15:46:10.901170072Z"
+generated: "2024-01-31T16:06:40.310657199Z"

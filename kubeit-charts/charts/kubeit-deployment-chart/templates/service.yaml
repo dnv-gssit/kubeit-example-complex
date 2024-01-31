@@ -7,7 +7,20 @@ kind: Service
 metadata:
   name: {{ include "platform-service.serviceName" . }}
   labels:
-{{ include "appLabels" . | trim | indent 4 }}
+    app.kubernetes.io/name: {{ include "platform-service.name" . }}
+    helm.sh/chart: {{ include "platform-service.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.service.kubeitTcpServiceEnabled }}
+    kubeitTcpServiceEnabled: "true"
+    kubeitTcpServicePort: "{{ .Values.service.port }}"
+{{- end }}
+
+{{- if .Values.service.exposeInternalLoadBalancer }}
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "30"
+{{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -15,6 +28,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+{{- if .Values.service.additionalPortConfig }}
+{{ .Values.service.additionalPortConfig | toYaml | trim | indent 4 }}
+{{- end }}
   selector:
     app.kubernetes.io/name: {{ include "platform-service.name" . }}
     app: {{ .Values.app }}

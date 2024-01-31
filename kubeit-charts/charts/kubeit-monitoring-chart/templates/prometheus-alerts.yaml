@@ -1,0 +1,31 @@
+# Merge global to Values
+{{- mergeOverwrite .Values (deepCopy (default (dict) .Values.global)) -}}
+{{- if .Values.prometheusRules.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: prometheus-alert-rules
+  labels:
+    app: kube-prometheus-stack
+spec:
+  groups:
+  {{- range .Values.prometheusRules.groups }}
+  - name: {{ .name }}
+    rules:
+    {{- range .alerts }}
+    - alert: {{ .alert }}
+      expr: {{ .expr }}
+      for: {{ .for }}
+      labels:
+        {{- range .labels }}
+        {{- range $key, $val := . }}
+        {{ $key }}: {{ $val }}
+        {{- end }}
+        {{- end }}
+      annotations:
+        summary: "{{ .annotations.summary }}"
+        description: "{{ .annotations.description }}"
+    {{- end }}
+  {{- end }}
+{{- end }}

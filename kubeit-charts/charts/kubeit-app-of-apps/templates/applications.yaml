@@ -1,13 +1,11 @@
 # Reference ArgoCD application definition - https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
-{{- merge (deepCopy (default (dict) .Values.global)) .Values -}}
+{{- mergeOverwrite .Values (deepCopy (default (dict) .Values.global)) -}}
 {{- range $app := .Values.applications }}
 {{- range $environment := $app.environments }}
 {{- range $environment.namespaces }}
-
 {{- if eq $.Values.env $environment.name }}
 {{- if has $.Values.region $environment.region }}
 {{- if has $.Values.clusterColour $environment.clusterColour }}
-{{- if not ( and ( contains "kubenet" $.Values.networkPlugin ) ( contains "windows" $app.containerOS ) ) }}
 
 # https://docs.microsoft.com/en-us/azure/devops/organizations/settings/naming-restrictions?view=azure-devops
 {{- $envDirectory := "" }}
@@ -17,52 +15,30 @@
 {{ $envDirectory = $.Values.env }}
 {{- end }}
 
-# ArgoCD Image Updater Values Loader
-{{- $globalScope := printf "appValues/%s/appGlobal.yaml" $app.name }}
-{{- $envScope := printf "appValues/%s/environment/%s/%s.yaml" $app.name $envDirectory $envDirectory }}
-{{- $regionScope := printf "appValues/%s/environment/%s/region/%s/%s.yaml" $app.name $envDirectory $.Values.region $.Values.region }}
-{{- $clusterScope := printf "appValues/%s/environment/%s/region/%s/cluster/%s.yaml" $app.name $envDirectory $.Values.region $.Values.clusterColour }}
-{{- $valuesList := list $globalScope $envScope $regionScope $clusterScope }}
-# ArgoCD Image Updater Variables
-{{- $enableUpdater := "" }}
+{{- $enableUpdater := false }}
 {{- $updaterRepo := "" }}
 {{- $updaterConstraint := "" }}
-{{- $updaterStrategy := "" }}
-{{- $updaterPullSecret := "" }}
 {{- $updaterAllowTags := "" }}
 {{- $updaterIgnoreTags := "" }}
 {{- $updaterGitBranch := "" }}
 {{- $updaterGitSecret := "" }}
-# ArgoCD Image Updater Logic
-{{ range $valuesList }}
-{{ range $.Files.Lines . }}
-{{- if eq (contains "argoCDImageUpdater" . ) true }}
-{{ $enableUpdater = true }}
-{{- else if eq (contains "updaterRepository" . ) true }}
-{{ $updaterRepo = "" | regexReplaceAll "\"" . | replace "updaterRepository:" "" | trim }}
-{{- else if eq (contains "updaterVersionConstraint" .) true }}
-{{ $updaterConstraint = "" | regexReplaceAll "\"" . | replace "updaterVersionConstraint:" "" | trim }}
-{{- else if eq (contains "updaterAllowTags" .) true }}
-{{ $updaterAllowTags = "" | regexReplaceAll "\"" . | replace "updaterAllowTags:" "" | trim }}
-{{- else if eq (contains "updaterIgnoreTags" .) true }}
-{{ $updaterIgnoreTags = . | replace "updaterIgnoreTags:" "" | trim }}
-{{- else if eq (contains "updaterGitBranch" .) true }}
-{{ $updaterGitBranch = "" | regexReplaceAll "\"" . | replace "updaterGitBranch:" "" | trim }}
-{{- else if eq (contains "gitSecretName" .) true }}
-{{ $updaterGitSecret = "" | regexReplaceAll "\"" . | replace "gitSecretName:" "" | trim }}
-{{- else if eq (contains "updaterStrategy" .) true }}
-{{ $updaterStrategy = "" | regexReplaceAll "\"" . | replace "updaterStrategy:" "" | trim }}
-{{- else if eq (contains "updaterPullSecret" .) true }}
-{{ $updaterPullSecret = "" | regexReplaceAll "\"" . | replace "updaterPullSecret:" "" | trim }}
-{{- else if eq (contains "updaterGitSecret" .) true }}
-{{ $updaterGitSecret = "" | regexReplaceAll "\"" . | replace "updaterGitSecret:" "" | trim }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- $appTruncName := printf "%s-%s" ($app.name | trunc 31 | trimSuffix "-") . | trunc 43 | trimSuffix "-" -}}
-{{- $appPath := ($app.chart | default dict ).path | default $.Values.global.chart.path -}}
+{{- $updaterStrategy := "" }}
+{{- $updaterPullSecret := "" }}
 
----
+# ArgoCD Image Updater Variables
+{{- if $.Values.global.argoCDImageUpdater }}
+{{- $enableUpdater = true }}
+{{- $updaterRepo = default "" $.Values.global.argoCDImageUpdater.updaterRepository | trim }}
+{{- $updaterConstraint = default "" $.Values.global.argoCDImageUpdater.updaterVersionConstraint | trim }}
+{{- $updaterAllowTags = default "" $.Values.global.argoCDImageUpdater.updaterAllowTags | trim }}
+{{- $updaterIgnoreTags = default "" $.Values.global.argoCDImageUpdater.updaterIgnoreTags | trim }}
+{{- $updaterGitBranch = default "" $.Values.global.argoCDImageUpdater.updaterGitBranch | trim }}
+{{- $updaterGitSecret = default "" $.Values.global.argoCDImageUpdater.updaterGitSecret | trim }}
+{{- $updaterStrategy = default "" $.Values.global.argoCDImageUpdater.updaterStrategy | trim }}
+{{- $updaterPullSecret = default "" $.Values.global.argoCDImageUpdater.updaterPullSecret | trim }}
+{{- end }}
+{{- $appTruncName := printf "%s-%s" ($app.name | trunc 31 | trimSuffix "-") . | trunc 43 | trimSuffix "-" }}
+{{- $appPath := ($app.chart | default dict ).path | default $.Values.global.chart.path }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -112,7 +88,6 @@ spec:
       values: |
         global:
           app: {{ $app.name }}
-          merge: {{ $app.chart.mergeValues }}
           namespace: {{ . }}
           gateway:
             name: istio-system/global-https-{{ $.Values.ingressType }}-default-gateway
@@ -153,7 +128,7 @@ spec:
         duration: 5s
         factor: 2
         maxDuration: 1m
-{{- end }}
+---
 {{- end }}
 {{- end }}
 {{- end }}

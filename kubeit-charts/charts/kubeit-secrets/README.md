@@ -9,29 +9,29 @@ Definitions:
 azureKeyVaultSecrets:
   type: external-secrets/csi-keyvault                  # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
   tenantId:                                            # Azure Active Directory Tenant ID
-  azureKeyVaults:                                 
+  azureKeyVaults:
     - azureKeyVaultName:                               # Name of the Azure KeyVault
-      secrets:                                 
+      secrets:
         - k8sSecretName:                               # Name of the Kubernetes secret resource that is going to be created inside the cluster
-          data:                                    
+          data:
             - k8sSecretKey:                           # Name of the key in Kubernetes secret resource
               azureKeyVaultSecretName:                # Name of the secret in Azure KeyVault to pull the secret value from
             - k8sSecretKey:                           # It is possible to define multiple secret keys and values in one secretproviderclass - lines below show example how to do that
               azureKeyVaultSecretName:
-        - k8sSecretName:                          
+        - k8sSecretName:
           data:
-            k8sSecretKey:                          
-            azureKeyVaultSecretName:       
+            k8sSecretKey:
+            azureKeyVaultSecretName:
 ```
 ## Azure Key Vault Access Policies
 
 Both of the secrets controllers use Managed Identities in the cluster to authenticate to Azure KeyVault.
-Tenants have to add the Managed Identity used for authentication to Azure KeyVault to enable pulling down secrets to the cluster. 
-Managed Identity Client ID that can be use for adding the access policies, can be found in the ArgoCD in the bootstrapped application Manifest in the `tenantIdentityClientId` field. Cluster Admin team can supply this value as well. 
+Tenants have to add the Managed Identity used for authentication to Azure KeyVault to enable pulling down secrets to the cluster.
+Managed Identity Client ID that can be use for adding the access policies, can be found in the ArgoCD in the bootstrapped application Manifest in the `tenantIdentityClientId` field. Cluster Admin team can supply this value as well.
 
 ## Using Managed Identities
 
-Usage of Managed Identities inside the cluster depends of the type of the secret controller.  
+Usage of Managed Identities inside the cluster depends of the type of the secret controller.
 
 ### External-secrets
 
@@ -39,7 +39,7 @@ When external-secrets is used, tenant clientID has to be specified in the chart 
 
 ### Csi-keyvault
 
-When csi-keyvualt is used, identity set in the `aadpodidbinding` label in the deployment/job/cronjob/replicaset is going to be used for authentication. Each of the tenants is able to have its own identity - for more info ask the Cluster Admin team.
+When csi-keyvualt is used, identity set in the `aadpodidbinding:tenant-<TENANTNAME>-pod-identity` label in the deployment/job/cronjob/replicaset is going to be used for authentication. Each of the tenants is able to have its own identity - for more info ask the Cluster Admin team. Add the Service Principal `MI_KubeITShared001-<ENV>-<REGION>_POD_Tenant_<TENANTNAME>`to Key Vault Access Policies.
 
 ## Examples
 
@@ -63,11 +63,11 @@ azureKeyVaultSecrets:
             - k8sSecretKey: k8sSecretKey3
               azureKeyVaultSecretName: SecretName3
             - k8sSecretKey: k8sSecretKey3
-              azureKeyVaultSecretName: SecretName3       
-``` 
+              azureKeyVaultSecretName: SecretName3
+```
 
 Csi-keyvault example:
-```yaml        
+```yaml
 azureKeyVaultSecrets:
   type: csi-keyvault                                   # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
   tenantId: "abcd1234-ab12-cd34-ef56-abcdef123456"     # Azure Active Directory Tenant ID
@@ -86,7 +86,7 @@ azureKeyVaultSecrets:
             - k8sSecretKey: k8sSecretKey3
               azureKeyVaultSecretName: SecretName3
             - k8sSecretKey: k8sSecretKey3
-              azureKeyVaultSecretName: SecretName3            
+              azureKeyVaultSecretName: SecretName3
 ```
 **Csi-keyvault volume has to be mounted in the Deployment. Kubeit-deployment-chart has this already implemented - if you want to use the secrets chart separetly, you can use it as an example**
 

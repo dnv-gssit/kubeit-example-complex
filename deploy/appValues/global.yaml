@@ -11,7 +11,7 @@ global:
     maxMem: 500Mi
     minReplicas: 1
     containerName: "*"
-  azureKeyVaultSecrets:
+  azureKeyVaultSecrets: {}
   # type: csi-keyvault                                   # Type of the secret controller used to deploy the secrets inside the KubeIT cluster
   # tenantId: "adf10e2b-b6e9-41d6-be2f-c12bb566019c"     # Azure Active Directory Tenant ID
   # clientId: ""                                         # Managed Identity Application ID - use Active Directory to pull this value or ask the Cluster Admin team to provide it

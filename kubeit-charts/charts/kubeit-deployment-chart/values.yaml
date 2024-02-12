@@ -148,7 +148,7 @@ defaultRouting:
   # providing any settings here will override the defaults
   retries:
     enabled: true
-    # settings:
+    settings: {}
     #   attempts: 3
     #   perTryTimeout: 2s
 

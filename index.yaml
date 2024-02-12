@@ -12,9 +12,9 @@ entries:
     version: 0.1.41
   kubeit-app-of-apps:
   - apiVersion: v2
-    created: "2024-02-07T23:06:02.397718481Z"
+    created: "2024-02-12T23:13:25.462152929Z"
     description: KubeIT ArgoCD app-of-apps chart
-    digest: dad20099aba0ec2ad1776cf97d303eaf47790223db68162ab101ca01e39a48ed
+    digest: 71c89bb4591c2e0a1443cf3867efbcc96e911d42d1794d565c674734c62b93b0
     name: kubeit-app-of-apps
     type: application
     urls:
@@ -94,9 +94,9 @@ entries:
     version: 0.1.37
   kubeit-deployment-chart:
   - apiVersion: v2
-    created: "2023-10-12T16:57:46.058039681Z"
+    created: "2024-02-12T23:13:25.46302092Z"
     description: KubeIT workload deployment chart
-    digest: a1be32657314948a5f606be6974ca57159430d9eb133ccd274022bdf97bb6c9a
+    digest: 21d15236a07f8d9dea2c798de6140cc6b9d69d99fa038f568bfeb6ca73ad2635
     name: kubeit-deployment-chart
     type: application
     urls:
@@ -276,10 +276,10 @@ entries:
   kubeit-monitoring-chart:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-02-07T23:06:02.399158318Z"
+    created: "2024-02-12T23:13:25.463313316Z"
     description: KubeIT monitoring chart using Alert manager, Prometheus Rules and
       Grafana Dashboard
-    digest: d1dadfa64daaa3b012e042061e9d4ab2f9e6e67289a0089a23f27c92f16ea09b
+    digest: 51857fcb1ea25daffb14fef05eb3ae55a077f846b0120ff967868a10d009bcb0
     name: kubeit-monitoring-chart
     type: application
     urls:
@@ -303,13 +303,13 @@ entries:
   kubeit-secrets-chart:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-02-07T23:06:02.399431488Z"
+    created: "2024-02-12T23:13:25.463514201Z"
     description: KubeIT secrets chart for using the csi-keyvault or external-secrets
       operators
-    digest: 184641537b86248e3a80d83b283da264a9c8a090a91d3356c6b7d8d0b8c6e050
+    digest: 73ec50e500067020a4c35af0347092b684506e1afe205eeeddfbe9e6647bb80c
     name: kubeit-secrets-chart
     type: application
     urls:
     - https://dnv-gssit.github.io/kubeit-example-complex/kubeit-secrets-chart-1.0.0.tgz
     version: 1.0.0
-generated: "2024-02-07T23:06:02.397094494Z"
+generated: "2024-02-12T23:13:25.461798046Z"

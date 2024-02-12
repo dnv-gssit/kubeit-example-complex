@@ -6,8 +6,8 @@
 {{- if .Values.defaultRouting.retries.settings }}
 {{ .Values.defaultRouting.retries.settings | toYaml | trim | indent 6 }}
 {{- else }}
-      attempts: 3
-      perTryTimeout: 2s
+      attempts: {{ .Values.retries.settings.attempts }}
+      perTryTimeout: {{ .Values.retries.settings.perTryTimeout }}
 {{- end -}}
 {{- end -}}
 {{- end -}}

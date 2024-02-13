@@ -148,9 +148,9 @@ defaultRouting:
   # providing any settings here will override the defaults
   retries:
     enabled: true
-    settings:
-      attempts: 3
-      perTryTimeout: 2s
+    # settings:
+    #   attempts: 3
+    #   perTryTimeout: 2s
 
   # corsPolicy:
   #   allowOrigins:
